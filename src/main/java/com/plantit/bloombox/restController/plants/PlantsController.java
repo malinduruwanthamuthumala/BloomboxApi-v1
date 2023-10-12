@@ -22,6 +22,8 @@ import com.plantit.bloombox.beans.plants.Plant;
 import com.plantit.bloombox.components.PlantsPersistanceManager;
 import com.plantit.bloombox.exceptions.PlantNotFoundException;
 
+import jakarta.validation.Valid;
+
 @RestController
 public class PlantsController {
 
@@ -46,7 +48,7 @@ public class PlantsController {
 	}
 	
 	@PostMapping("/plant")
-	public ResponseEntity<Plant> CreatePlant(@RequestBody Plant plant) {
+	public ResponseEntity<Plant> CreatePlant(@Valid @RequestBody Plant plant) {
 		prManager.save(plant);		
 		//returning back the uri of the created user
 		URI location = ServletUriComponentsBuilder

@@ -3,14 +3,21 @@ package com.plantit.bloombox.beans.plants;
 import java.util.Map;
 import java.util.Objects;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class Plant implements IdSupport{
 	
 	
 	private String id;
 	private String plantDescription;
+	
+	@Size(min=2,message = "Name should have at least two charachters")
 	private String plantName;
 	private Map<String,Long> prices;
 	private String images;
+	
+	@NotNull
 	private Integer stockQuantity;
 		
 	public String getPlantDescription() {
