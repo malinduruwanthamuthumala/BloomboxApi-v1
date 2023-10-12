@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +36,7 @@ public class PlantsController {
 	@RequestMapping(path ="/plant/{id1}")
 	public Plant getFIlteredPlant(@PathVariable String id1){
 		
-		Long identifirer = Long.parseLong(id1);
+		String identifirer = id1;
 		Predicate<? super Plant> predicate = (plant) -> {
 			return identifirer.equals(plant.getId());
 		};
@@ -55,6 +56,11 @@ public class PlantsController {
 				.toUri();
 		return ResponseEntity.created(location).build();
 		
+	}
+	
+	@DeleteMapping(path = "/plant/{id}")
+	public void deletePlant(@PathVariable String id) {
+		prManager.deleteById(id);
 	}
 	
   

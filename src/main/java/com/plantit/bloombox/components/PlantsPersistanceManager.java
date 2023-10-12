@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
+import java.util.function.Predicate;
 
 import org.springframework.stereotype.Component;
 
@@ -21,9 +23,9 @@ public class PlantsPersistanceManager {
 	        prices.put("Large", 30L);
 
 	        // Add instances of Plant to the list using the constructor
-	        plantList.add(new Plant(1L, "Description 1", "Plant 1", prices, "image1.jpg", 100));
-	        plantList.add(new Plant(2L, "Description 2", "Plant 2", prices, "image2.jpg", 150));
-	        plantList.add(new Plant(3L, "Description 3", "Plant 3", prices, "image3.jpg", 200));
+	        plantList.add(new Plant("1L", "Description 1", "Plant 1", prices, "image1.jpg", 100));
+	        plantList.add(new Plant("2L", "Description 2", "Plant 2", prices, "image2.jpg", 150));
+	        plantList.add(new Plant("3L", "Description 3", "Plant 3", prices, "image3.jpg", 200));
 	}
 
  public  List<Plant> getPlantsList() {
@@ -33,9 +35,30 @@ public class PlantsPersistanceManager {
 
 
  public void save(Plant plant) {
+	 UUID uuid = UUID.randomUUID();
+	 String uniqueId = uuid.toString();
+	plant.setId(uniqueId);
 	plantList.add(plant);
 	
  }
+ 
+ public void deleteById(String id) {
+	 
+	 Predicate<? super Plant> predicate = (plant) -> {
+		 if(plant.getId().equals(id)) {
+			 return true;
+		 } else {
+			 return false;
+		 }
+	 };
+	 
+	 plantList.removeIf(predicate);
+	 
+ }
+
+
+
+
 	
 
 

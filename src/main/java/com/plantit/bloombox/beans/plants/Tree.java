@@ -12,7 +12,7 @@ public class Tree extends Plant {
 	    public double getTrunkDiameter() {
 			return trunkDiameter;
 		}
-		public Tree(Long id, String plantDescription, String plantName, Map<String, Long> prices, String images,
+		public Tree(String id, String plantDescription, String plantName, Map<String, Long> prices, String images,
 				Integer stockQuantity, double trunkDiameter, String barkTexture, int age, String fruitType,
 				String woodType) {
 			super(id, plantDescription, plantName, prices, images, stockQuantity);

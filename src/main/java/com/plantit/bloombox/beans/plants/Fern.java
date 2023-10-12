@@ -27,7 +27,7 @@ public class Fern extends Plant {
 	public void setHasSpores(boolean hasSpores) {
 		this.hasSpores = hasSpores;
 	}
-	public Fern(Long id, String plantDescription, String plantName, Map<String, Long> prices, String images,
+	public Fern(String id, String plantDescription, String plantName, Map<String, Long> prices, String images,
 			Integer stockQuantity) {
 		super(id, plantDescription, plantName, prices, images, stockQuantity);
 		// TODO Auto-generated constructor stub
