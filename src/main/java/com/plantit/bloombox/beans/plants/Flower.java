@@ -34,11 +34,16 @@ public class Flower extends Plant {
 	public void setEdible(boolean isEdible) {
 		this.isEdible = isEdible;
 	}
-	public Flower(Long id, String plantDescription, String plantName, Map<String, Long> prices, String images,
+	public Flower(String id, String plantDescription, String plantName, Map<String, Long> prices, String images,
 			Integer stockQuantity) {
 		super(id, plantDescription, plantName, prices, images, stockQuantity);
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	public static class Builder extends PlantsBuilder{
+		
+		
+	}
 
 }

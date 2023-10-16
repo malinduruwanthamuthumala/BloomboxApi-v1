@@ -12,7 +12,7 @@ public class Cactus extends Plant {
 	public boolean isSpiky() {
 		return isSpiky;
 	}
-	public Cactus(Long id, String plantDescription, String plantName, Map<String, Long> prices, String images,
+	public Cactus(String id, String plantDescription, String plantName, Map<String, Long> prices, String images,
 			Integer stockQuantity) {
 		super(id, plantDescription, plantName, prices, images, stockQuantity);
 		
@@ -34,5 +34,9 @@ public class Cactus extends Plant {
 	}
     
     
+	public static class Builder extends PlantsBuilder{
+		
+		
+	}
 
 }

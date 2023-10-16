@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +21,8 @@ import com.plantit.bloombox.beans.HelloWorld;
 import com.plantit.bloombox.beans.plants.Plant;
 import com.plantit.bloombox.components.PlantsPersistanceManager;
 import com.plantit.bloombox.exceptions.PlantNotFoundException;
+
+import jakarta.validation.Valid;
 
 @RestController
 public class PlantsController {
@@ -35,7 +38,7 @@ public class PlantsController {
 	@RequestMapping(path ="/plant/{id1}")
 	public Plant getFIlteredPlant(@PathVariable String id1){
 		
-		Long identifirer = Long.parseLong(id1);
+		String identifirer = id1;
 		Predicate<? super Plant> predicate = (plant) -> {
 			return identifirer.equals(plant.getId());
 		};
@@ -45,7 +48,7 @@ public class PlantsController {
 	}
 	
 	@PostMapping("/plant")
-	public ResponseEntity<Plant> CreatePlant(@RequestBody Plant plant) {
+	public ResponseEntity<Plant> CreatePlant(@Valid @RequestBody Plant plant) {
 		prManager.save(plant);		
 		//returning back the uri of the created user
 		URI location = ServletUriComponentsBuilder
@@ -55,6 +58,11 @@ public class PlantsController {
 				.toUri();
 		return ResponseEntity.created(location).build();
 		
+	}
+	
+	@DeleteMapping(path = "/plant/{id}")
+	public void deletePlant(@PathVariable String id) {
+		prManager.deleteById(id);
 	}
 	
   

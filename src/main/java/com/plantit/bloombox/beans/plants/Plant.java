@@ -3,14 +3,21 @@ package com.plantit.bloombox.beans.plants;
 import java.util.Map;
 import java.util.Objects;
 
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 public class Plant implements IdSupport{
 	
 	
-	private Long id;
+	private String id;
 	private String plantDescription;
+	
+	@Size(min=2,message = "Name should have at least two charachters")
 	private String plantName;
 	private Map<String,Long> prices;
 	private String images;
+	
+	@NotNull
 	private Integer stockQuantity;
 		
 	public String getPlantDescription() {
@@ -47,13 +54,12 @@ public class Plant implements IdSupport{
 	}
 	
 	@Override
-	public Long getId() {
-		
+	public String getId() {		
 		return this.id;
 	}
 	@Override
-	public void setId(Long id) {
-	  this.id = id;
+	public void setId(String uniqueId) {
+	  this.id = uniqueId;
 	}
 
 	@Override
@@ -81,7 +87,7 @@ public class Plant implements IdSupport{
 				+ prices + ", images=" + images + ", stockQuantity=" + stockQuantity + "]";
 	}
 	
-	public Plant(Long id, String plantDescription, String plantName, Map<String, Long> prices, String images,
+	public Plant(String id, String plantDescription, String plantName, Map<String, Long> prices, String images,
 			Integer stockQuantity) {
 		super();
 		this.id = id;
