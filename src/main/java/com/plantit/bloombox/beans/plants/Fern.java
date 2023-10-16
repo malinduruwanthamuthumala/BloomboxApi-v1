@@ -33,6 +33,11 @@ public class Fern extends Plant {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public static class Builder extends PlantsBuilder{
+		
+		
+	}
+	
 	
 
 }

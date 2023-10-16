@@ -23,10 +23,7 @@ public class HelloWorldController {
 				
 	}	
 	
-	@RequestMapping("/")
-    public String home(){
-        return "Hello World!";
-    }
+	
 	
 	@RequestMapping(path ="/home/{name}")
     public HelloWorld homeBean(@PathVariable String name){

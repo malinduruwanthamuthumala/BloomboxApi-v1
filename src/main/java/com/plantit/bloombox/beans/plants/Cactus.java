@@ -34,5 +34,9 @@ public class Cactus extends Plant {
 	}
     
     
+	public static class Builder extends PlantsBuilder{
+		
+		
+	}
 
 }

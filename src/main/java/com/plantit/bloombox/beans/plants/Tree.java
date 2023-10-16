@@ -50,5 +50,11 @@ public class Tree extends Plant {
 			this.woodType = woodType;
 		}
 		private String woodType; 
+		
+		
+		public static class Builder extends PlantsBuilder{
+			
+			
+		}
 
 }
