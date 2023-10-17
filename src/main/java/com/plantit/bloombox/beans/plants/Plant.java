@@ -92,43 +92,8 @@ public class Plant implements IdSupport{
 	}
 	
 	
-	public class PlantBuilder {
-			
-		private String plantDescription;
-		private String plantName;		
-		private Double price;		
-		private String images;
-		
-		public PlantBuilder setPlantDescription(String description) {		
-			this.plantDescription = description;
-			return this;
-		}
-		
-		public PlantBuilder setPlantName(String name) {		
-			this.plantName = name;
-			return this;
-		}
-		
-		public PlantBuilder setPrice(Double price) {		
-			this.price = price;
-			return this;
-		}
-		
-		public PlantBuilder setImages(String images) {		
-			this.images = images;
-			return this;
-		}
-		
-		public Plant build() {
-			Plant plant = new Plant();
-			plant.setImages(images);
-			plant.setPlantDescription(plantDescription);
-			plant.setPlantName(plantName);
-			plant.setPrices(price);
-			plant.setStockQuantity(stockQuantity);
-			
-			return plant;
-		}
+	public static class PlantBuilder {
+					//no-op
 	}
 	
 

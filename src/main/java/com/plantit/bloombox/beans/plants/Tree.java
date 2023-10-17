@@ -2,6 +2,8 @@ package com.plantit.bloombox.beans.plants;
 
 import java.util.Map;
 
+import com.plantit.bloombox.beans.plants.Fern.FernBuilder;
+
 public class Tree extends Plant {
 	
 	    private double trunkDiameter; 
@@ -44,11 +46,17 @@ public class Tree extends Plant {
 		
 		
 		
-		public class TreeBuilder extends PlantBuilder {
+		public static class TreeBuilder extends PlantBuilder {
 			private double trunkDiameter; 
 		    private String barkTexture;  
 		    private int age;              
 		    private String fruitType;
+		    private String plantDescription;
+			private String plantName;		
+			private Double price;		
+			private String images;
+			private Integer stockQuantity;
+			
 			
 			
 			public TreeBuilder setTrunkDiameter(double trunkDiameter) {
@@ -68,14 +76,43 @@ public class Tree extends Plant {
 				return this;
 			}
 			
+			public TreeBuilder setPlantDescription(String description) {		
+				this.plantDescription = description;
+				return this;
+			}
+			
+			public TreeBuilder setPlantName(String name) {		
+				this.plantName = name;
+				return this;
+			}
+			
+			public TreeBuilder setPrice(Double price) {		
+				this.price = price;
+				return this;
+			}
+			
+			public TreeBuilder setImages(String images) {		
+				this.images = images;
+				return this;
+			}
+			
+			public TreeBuilder setStock(Integer stock) {
+				this.stockQuantity = stock;
+				return this;
+			}
+			
 			public Tree build() {
-				Plant plant = super.build();
-				Tree tree = (Tree)plant;
+				
+				Tree tree = new Tree();
 				tree.setAge(age);
 				tree.setBarkTexture(barkTexture);
 				tree.setFruitType(fruitType);
 				tree.setTrunkDiameter(trunkDiameter);
-				
+				tree.setPlantDescription(plantDescription);
+				tree.setPlantName(plantName);
+				tree.setPrices(price);
+				tree.setStockQuantity(stockQuantity);
+				tree.setImages(images);
 				return tree;
 		}
 		    
