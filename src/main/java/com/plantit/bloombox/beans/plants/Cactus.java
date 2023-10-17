@@ -12,11 +12,7 @@ public class Cactus extends Plant {
 	public boolean isSpiky() {
 		return isSpiky;
 	}
-	public Cactus(String id, String plantDescription, String plantName, Map<String, Long> prices, String images,
-			Integer stockQuantity) {
-		super(id, plantDescription, plantName, prices, images, stockQuantity);
-		
-	}
+	
 	public void setSpiky(boolean isSpiky) {
 		this.isSpiky = isSpiky;
 	}
@@ -34,8 +30,35 @@ public class Cactus extends Plant {
 	}
     
     
-	public static class Builder extends PlantsBuilder{
+	public class CactusBuilder extends PlantBuilder {
 		
+		private boolean isSpiky;
+	    private String spikyType;
+	    private boolean hasFlowers;
+	    
+	    public CactusBuilder setIsSpiky(boolean isSpiky) {
+	    	this.isSpiky = isSpiky;
+	    	return this;
+	    }
+	    
+	    public CactusBuilder setspiKyType(String spikyType) {
+	    	this.spikyType = spikyType;
+	    	return this;
+	    }
+		
+	    public CactusBuilder setHasFlowers(boolean hasFlowers) {
+	    	this.hasFlowers = hasFlowers;
+	    	return this;
+	    }
+	    
+	    public Cactus build() {
+	    	Plant plant = super.build();
+	        Cactus cactus = (Cactus)plant;
+	        cactus.setHasFlowers(hasFlowers);
+	        cactus.setSpiky(isSpiky);
+	        cactus.setSpikyType(spikyType);
+	        return cactus;
+	    }
 		
 	}
 

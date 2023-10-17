@@ -4,10 +4,14 @@ import java.util.Map;
 
 public interface IdSupport {
 	
-	  public  String getId();
+	  public  Long getId();
 	  
 	
 
-	void setId(String uniqueId);
+	
+
+
+
+	void setId(Long uniqueId);
 
 }

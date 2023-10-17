@@ -27,16 +27,40 @@ public class Fern extends Plant {
 	public void setHasSpores(boolean hasSpores) {
 		this.hasSpores = hasSpores;
 	}
-	public Fern(String id, String plantDescription, String plantName, Map<String, Long> prices, String images,
-			Integer stockQuantity) {
-		super(id, plantDescription, plantName, prices, images, stockQuantity);
-		// TODO Auto-generated constructor stub
-	}
 	
-	public static class Builder extends PlantsBuilder{
+	public  class FernBuilder extends PlantBuilder {
 		
+		private boolean isIndigenous;
+	    private String habitat;
+	    private boolean hasSpores;
+		
+	    
+		public FernBuilder setIndigenous(boolean isIndigenous) {
+			this.isIndigenous = isIndigenous;
+			return this;
+		}
+		public FernBuilder setHabitat(String habitat) {
+			this.habitat = habitat;
+			return this;
+		}
+		public FernBuilder setHasSpores(boolean hasSpores) {
+			this.hasSpores = hasSpores;
+			return this;
+		}
+	    
+		public Fern build() {
+			Plant plant = super.build();
+			Fern fern = (Fern)plant;
+			
+			fern.setHabitat(habitat);
+			fern.setHasSpores(hasSpores);
+			fern.setIndigenous(isIndigenous);
+			return fern;
+		}
+	    
 		
 	}
+
 	
 	
 
