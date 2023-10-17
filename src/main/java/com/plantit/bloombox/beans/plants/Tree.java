@@ -12,16 +12,7 @@ public class Tree extends Plant {
 	    public double getTrunkDiameter() {
 			return trunkDiameter;
 		}
-		public Tree(String id, String plantDescription, String plantName, Map<String, Long> prices, String images,
-				Integer stockQuantity, double trunkDiameter, String barkTexture, int age, String fruitType,
-				String woodType) {
-			super(id, plantDescription, plantName, prices, images, stockQuantity);
-			this.trunkDiameter = trunkDiameter;
-			this.barkTexture = barkTexture;
-			this.age = age;
-			this.fruitType = fruitType;
-			this.woodType = woodType;
-		}
+		
 		public void setTrunkDiameter(double trunkDiameter) {
 			this.trunkDiameter = trunkDiameter;
 		}
@@ -52,9 +43,43 @@ public class Tree extends Plant {
 		private String woodType; 
 		
 		
-		public static class Builder extends PlantsBuilder{
+		
+		public class TreeBuilder extends PlantBuilder {
+			private double trunkDiameter; 
+		    private String barkTexture;  
+		    private int age;              
+		    private String fruitType;
 			
 			
+			public TreeBuilder setTrunkDiameter(double trunkDiameter) {
+				this.trunkDiameter = trunkDiameter;
+				return this;
+			}
+			public TreeBuilder setBarkTexture(String barkTexture) {
+				this.barkTexture = barkTexture;
+				return this;
+			}
+			public TreeBuilder setAge(int age) {
+				this.age = age;
+				return this;
+			}
+			public TreeBuilder setFruitType(String fruitType) {
+				this.fruitType = fruitType;
+				return this;
+			}
+			
+			public Tree build() {
+				Plant plant = super.build();
+				Tree tree = (Tree)plant;
+				tree.setAge(age);
+				tree.setBarkTexture(barkTexture);
+				tree.setFruitType(fruitType);
+				tree.setTrunkDiameter(trunkDiameter);
+				
+				return tree;
+		}
+		    
+		    
 		}
 
 }

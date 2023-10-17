@@ -34,16 +34,46 @@ public class Flower extends Plant {
 	public void setEdible(boolean isEdible) {
 		this.isEdible = isEdible;
 	}
-	public Flower(String id, String plantDescription, String plantName, Map<String, Long> prices, String images,
-			Integer stockQuantity) {
-		super(id, plantDescription, plantName, prices, images, stockQuantity);
-		// TODO Auto-generated constructor stub
-	}
 	
 	
-	public static class Builder extends PlantsBuilder{
+	
+	public class FlowerBuilder extends PlantBuilder {
+		private int petalCount;
+		private String color;
+		private String fragrance;
+		private boolean isEdible;
 		
+		public FlowerBuilder setPetalCount(int petalCount) {
+			this.petalCount = petalCount;
+			return this;
+		}
 		
+		public FlowerBuilder setColor(String color) {
+			this.color = color;
+			return this;
+		}
+		
+		public FlowerBuilder setFragrance(String fragrance) {
+			this.fragrance = fragrance;
+			return this;
+		}
+		
+		public FlowerBuilder setIsEdible(boolean isEdible) {
+			this.isEdible = isEdible;
+			return this;
+		}
+		
+		public Flower build() {
+			
+			Plant plant = super.build();
+			Flower flower = (Flower)plant;
+			flower.setColor(color);
+			flower.setEdible(isEdible);
+			flower.setFragrance(fragrance);
+			flower.setPetalCount(petalCount);
+			return flower;
+			
+		}
 	}
 
 }

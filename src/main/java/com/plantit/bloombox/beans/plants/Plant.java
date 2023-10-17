@@ -6,15 +6,19 @@ import java.util.Objects;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+
 public class Plant implements IdSupport{
 	
 	
-	private String id;
+	private Long id;
+	
 	private String plantDescription;
 	
 	@Size(min=2,message = "Name should have at least two charachters")
 	private String plantName;
-	private Map<String,Long> prices;
+	
+	private Double price;
+	
 	private String images;
 	
 	@NotNull
@@ -32,13 +36,13 @@ public class Plant implements IdSupport{
 	public void setPlantName(String plantName) {
 		this.plantName = plantName;
 	}
-	public Map<String, Long> getPrices() {
-		return prices;
+	public Double getPrices() {
+		return price;
 	}
 	
 	
-	public void setPrices(Map<String, Long> prices) {
-		this.prices = prices;
+	public void setPrices(Double prices) {
+		this.price = prices;
 	}
 	public String getImages() {
 		return images;
@@ -54,17 +58,17 @@ public class Plant implements IdSupport{
 	}
 	
 	@Override
-	public String getId() {		
+	public Long getId() {		
 		return this.id;
 	}
 	@Override
-	public void setId(String uniqueId) {
+	public void setId(Long uniqueId) {
 	  this.id = uniqueId;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id, images, plantDescription, plantName, prices, stockQuantity);
+		return Objects.hash(id, images, plantDescription, plantName, price, stockQuantity);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -77,28 +81,55 @@ public class Plant implements IdSupport{
 		Plant other = (Plant) obj;
 		return Objects.equals(id, other.id) && Objects.equals(images, other.images)
 				&& Objects.equals(plantDescription, other.plantDescription)
-				&& Objects.equals(plantName, other.plantName) && Objects.equals(prices, other.prices)
+				&& Objects.equals(plantName, other.plantName) && Objects.equals(price, other.price)
 				&& Objects.equals(stockQuantity, other.stockQuantity);
 	}
 	
 	@Override
 	public String toString() {
 		return "Plant [id=" + id + ", plantDescription=" + plantDescription + ", plantName=" + plantName + ", prices="
-				+ prices + ", images=" + images + ", stockQuantity=" + stockQuantity + "]";
+				+ price + ", images=" + images + ", stockQuantity=" + stockQuantity + "]";
 	}
 	
-	public Plant(String id, String plantDescription, String plantName, Map<String, Long> prices, String images,
-			Integer stockQuantity) {
-		super();
-		this.id = id;
-		this.plantDescription = plantDescription;
-		this.plantName = plantName;
-		this.prices = prices;
-		this.images = images;
-		this.stockQuantity = stockQuantity;
-	}
-
 	
+	public class PlantBuilder {
+			
+		private String plantDescription;
+		private String plantName;		
+		private Double price;		
+		private String images;
+		
+		public PlantBuilder setPlantDescription(String description) {		
+			this.plantDescription = description;
+			return this;
+		}
+		
+		public PlantBuilder setPlantName(String name) {		
+			this.plantName = name;
+			return this;
+		}
+		
+		public PlantBuilder setPrice(Double price) {		
+			this.price = price;
+			return this;
+		}
+		
+		public PlantBuilder setImages(String images) {		
+			this.images = images;
+			return this;
+		}
+		
+		public Plant build() {
+			Plant plant = new Plant();
+			plant.setImages(images);
+			plant.setPlantDescription(plantDescription);
+			plant.setPlantName(plantName);
+			plant.setPrices(price);
+			plant.setStockQuantity(stockQuantity);
+			
+			return plant;
+		}
+	}
 	
 
 
