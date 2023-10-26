@@ -29,6 +29,7 @@ public class PlantCreationFactory {
 					.setPlantDescription(c.getPlantDescription())
 					.setPrice(c.getPrices())		
 					.setPlantName(c.getPlantName())
+					.setStock(c.getStockQuantity())
 					.build();
 			return Optional.of(cactus);
 		}		
