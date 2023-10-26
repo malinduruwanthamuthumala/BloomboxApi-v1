@@ -3,13 +3,21 @@ package com.plantit.bloombox.beans.plants;
 import java.util.Map;
 import java.util.Objects;
 
+import jakarta.annotation.Generated;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 
-public class Plant implements IdSupport{
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Plant implements IdSupport{
 	
-	
+	@Id
+	@Generated(value = { "" })	
 	private Long id;
 	
 	private String plantDescription;
@@ -92,43 +100,8 @@ public class Plant implements IdSupport{
 	}
 	
 	
-	public class PlantBuilder {
-			
-		private String plantDescription;
-		private String plantName;		
-		private Double price;		
-		private String images;
-		
-		public PlantBuilder setPlantDescription(String description) {		
-			this.plantDescription = description;
-			return this;
-		}
-		
-		public PlantBuilder setPlantName(String name) {		
-			this.plantName = name;
-			return this;
-		}
-		
-		public PlantBuilder setPrice(Double price) {		
-			this.price = price;
-			return this;
-		}
-		
-		public PlantBuilder setImages(String images) {		
-			this.images = images;
-			return this;
-		}
-		
-		public Plant build() {
-			Plant plant = new Plant();
-			plant.setImages(images);
-			plant.setPlantDescription(plantDescription);
-			plant.setPlantName(plantName);
-			plant.setPrices(price);
-			plant.setStockQuantity(stockQuantity);
-			
-			return plant;
-		}
+	public static class PlantBuilder {
+					//no-op
 	}
 	
 

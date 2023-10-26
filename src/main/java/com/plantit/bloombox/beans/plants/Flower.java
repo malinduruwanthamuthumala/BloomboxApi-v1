@@ -2,7 +2,15 @@ package com.plantit.bloombox.beans.plants;
 
 import java.util.Map;
 
+import com.plantit.bloombox.beans.plants.Fern.FernBuilder;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+
+@Entity
 public class Flower extends Plant {
+	
 	
 	private int petalCount;
 	private String color;
@@ -37,11 +45,16 @@ public class Flower extends Plant {
 	
 	
 	
-	public class FlowerBuilder extends PlantBuilder {
+	public static class FlowerBuilder extends PlantBuilder {
 		private int petalCount;
 		private String color;
 		private String fragrance;
 		private boolean isEdible;
+		private String plantDescription;
+		private String plantName;		
+		private Double price;		
+		private String images;
+		private Integer stockQuantity;
 		
 		public FlowerBuilder setPetalCount(int petalCount) {
 			this.petalCount = petalCount;
@@ -63,14 +76,43 @@ public class Flower extends Plant {
 			return this;
 		}
 		
-		public Flower build() {
+		public FlowerBuilder setPlantDescription(String description) {		
+			this.plantDescription = description;
+			return this;
+		}
+		
+		public FlowerBuilder setPlantName(String name) {		
+			this.plantName = name;
+			return this;
+		}
+		
+		public FlowerBuilder setPrice(Double price) {		
+			this.price = price;
+			return this;
+		}
+		
+		public FlowerBuilder setImages(String images) {		
+			this.images = images;
+			return this;
+		}
+		
+		public FlowerBuilder setStock(Integer stock) {
+			this.stockQuantity = stock;
+			return this;
+		}
+		
+		public  Flower build() {
 			
-			Plant plant = super.build();
-			Flower flower = (Flower)plant;
+			Flower flower = new Flower();
 			flower.setColor(color);
 			flower.setEdible(isEdible);
 			flower.setFragrance(fragrance);
 			flower.setPetalCount(petalCount);
+			flower.setImages(images);
+			flower.setFragrance(fragrance);
+			flower.setPlantDescription(plantDescription);
+			flower.setPrices(price);
+			flower.setStockQuantity(stockQuantity);
 			return flower;
 			
 		}
