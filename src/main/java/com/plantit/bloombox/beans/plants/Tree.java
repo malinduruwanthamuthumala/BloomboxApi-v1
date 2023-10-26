@@ -4,6 +4,9 @@ import java.util.Map;
 
 import com.plantit.bloombox.beans.plants.Fern.FernBuilder;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Tree extends Plant {
 	
 	    private double trunkDiameter; 

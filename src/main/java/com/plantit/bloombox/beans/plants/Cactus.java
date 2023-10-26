@@ -4,6 +4,9 @@ import java.util.Map;
 
 import com.plantit.bloombox.beans.plants.Plant.PlantBuilder;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Cactus extends Plant {
 	
 	private boolean isSpiky;

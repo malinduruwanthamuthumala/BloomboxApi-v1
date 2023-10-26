@@ -4,7 +4,13 @@ import java.util.Map;
 
 import com.plantit.bloombox.beans.plants.Fern.FernBuilder;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+
+@Entity
 public class Flower extends Plant {
+	
 	
 	private int petalCount;
 	private String color;

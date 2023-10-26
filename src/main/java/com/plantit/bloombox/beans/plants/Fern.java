@@ -4,6 +4,9 @@ import java.util.Map;
 
 import com.plantit.bloombox.beans.plants.Cactus.CactusBuilder;
 
+import jakarta.persistence.Entity;
+
+@Entity
 public class Fern extends Plant {
 	
 	private boolean isIndigenous;

@@ -2,6 +2,8 @@ package com.plantit.bloombox.factories;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+
 import com.plantit.bloombox.beans.plants.Cactus;
 import com.plantit.bloombox.beans.plants.Plant;
 import com.plantit.bloombox.beans.plants.Cactus.CactusBuilder;
@@ -11,6 +13,7 @@ import com.plantit.bloombox.beans.plants.Plant.PlantBuilder;
 import com.plantit.bloombox.beans.plants.Tree;
 import com.plantit.bloombox.enums.PlantTypes;
 
+@Component
 public class PlantCreationFactory {
 	
 	
@@ -24,7 +27,8 @@ public class PlantCreationFactory {
 					.setIsSpiky(c.isSpiky())
 					.setImages(c.getImages())
 					.setPlantDescription(c.getPlantDescription())
-					.setPrice(c.getPrices())					
+					.setPrice(c.getPrices())		
+					.setPlantName(c.getPlantName())
 					.build();
 			return Optional.of(cactus);
 		}		
