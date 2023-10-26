@@ -5,6 +5,8 @@ import java.util.Objects;
 
 import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
@@ -17,7 +19,7 @@ import jakarta.validation.constraints.Size;
 public abstract class Plant implements IdSupport{
 	
 	@Id
-	@Generated(value = { "" })	
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private String plantDescription;

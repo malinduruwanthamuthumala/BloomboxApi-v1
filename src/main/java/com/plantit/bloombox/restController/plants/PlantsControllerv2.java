@@ -16,9 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import com.plantit.bloombox.beans.plants.Cactus;
+import com.plantit.bloombox.beans.plants.Fern;
+import com.plantit.bloombox.beans.plants.Flower;
 import com.plantit.bloombox.beans.plants.Plant;
+import com.plantit.bloombox.beans.plants.Tree;
 import com.plantit.bloombox.components.PlantsPersistanceManager;
 import com.plantit.bloombox.exceptions.PlantNotFoundException;
+import com.plantit.bloombox.factories.PlantCreationFactory;
 import com.plantit.bloombox.repository.PlantRepository;
 
 import jakarta.validation.Valid;
@@ -32,27 +37,82 @@ public class PlantsControllerv2 {
 	@Autowired
 	PlantsPersistanceManager prManager;
 	
+	@Autowired PlantCreationFactory factory;
+	
 	@GetMapping("/v2/plant")
 	public List<Plant> getAllPlants(){
 		return repository.findAll();
 	}
 	
 	@RequestMapping(path ="/v2/plant/{id1}")
-	public Plant getFIlteredPlant(@PathVariable String id1){
+	public Plant getFIlteredPlant(@PathVariable long id1){
 		
-		String identifirer = id1;
-		Predicate<? super Plant> predicate = (plant) -> {
-			return identifirer.equals(plant.getId());
-		};
+		Optional<Plant> plant = repository.findById(id1);
 		
-		Optional<Plant> searchedPlant =  prManager.getPlantsList().stream().filter(predicate).findFirst();
-		return searchedPlant.orElseThrow(()-> new PlantNotFoundException("plant item you requested cannot be found"));
+		if(plant.isPresent()) {
+			return plant.get();
+		} else {
+			throw new PlantNotFoundException("Plant you requested cannot be found");
+		}
+		
 	}
 	
-	@PostMapping("/v2/plant")
-	public ResponseEntity<Plant> CreatePlant(@Valid @RequestBody Plant plant) {
-		prManager.save(plant);		
-		//returning back the uri of the created user
+	@PostMapping("/v2/cactus")
+	public ResponseEntity<Cactus> CreateCactus(@Valid  @RequestBody Cactus plant ) {
+		Long id = null ;
+		Optional<Plant> p = factory.createPlant("Cactus", plant);
+		if(p.isPresent()) {
+			repository.save(p.get());
+			id = p.get().getId();
+		}					
+		URI location = ServletUriComponentsBuilder
+				.fromCurrentRequest()
+				.replacePath("/v2/plant/{id}") 
+				.buildAndExpand(id)
+				.toUri();
+		return ResponseEntity.created(location).build();
+		
+	}
+	
+	@PostMapping("/v2/fern")
+	public ResponseEntity<Fern> CreateFern(@Valid  @RequestBody Fern plant ) {
+		
+		Optional<Plant> p = factory.createPlant("Fern", plant);
+		if(p.isPresent()) {
+			repository.save(p.get());	
+		}					
+		URI location = ServletUriComponentsBuilder
+				.fromCurrentRequest()
+				.path("/{id}")
+				.buildAndExpand(plant.getId())
+				.toUri();
+		return ResponseEntity.created(location).build();
+		
+	}
+	
+	@PostMapping("/v2/flower")
+	public ResponseEntity<Flower> CreateFlower(@Valid  @RequestBody Flower plant ) {
+		
+		Optional<Plant> p = factory.createPlant("Flower", plant);
+		if(p.isPresent()) {
+			repository.save(p.get());	
+		}					
+		URI location = ServletUriComponentsBuilder
+				.fromCurrentRequest()
+				.path("/{id}")
+				.buildAndExpand(plant.getId())
+				.toUri();
+		return ResponseEntity.created(location).build();
+		
+	}
+	
+	@PostMapping("/v2/tree")
+	public ResponseEntity<Tree> CreateTree(@Valid  @RequestBody Tree plant ) {
+		
+		Optional<Plant> p = factory.createPlant("Tree", plant);
+		if(p.isPresent()) {
+			repository.save(p.get());	
+		}					
 		URI location = ServletUriComponentsBuilder
 				.fromCurrentRequest()
 				.path("/{id}")
@@ -63,8 +123,8 @@ public class PlantsControllerv2 {
 	}
 	
 	@DeleteMapping(path = "v2/plant/{id}")
-	public void deletePlant(@PathVariable String id) {
-		prManager.deleteById(id);
+	public void deletePlant(@PathVariable long id) {
+		repository.deleteById(id);
 	}
 	
 

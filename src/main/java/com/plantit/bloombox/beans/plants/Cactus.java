@@ -2,6 +2,7 @@ package com.plantit.bloombox.beans.plants;
 
 import java.util.Map;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.plantit.bloombox.beans.plants.Plant.PlantBuilder;
 
 import jakarta.persistence.Entity;
@@ -9,8 +10,13 @@ import jakarta.persistence.Entity;
 @Entity
 public class Cactus extends Plant {
 	
+	@JsonProperty
 	private boolean isSpiky;
+	
+	@JsonProperty
     private String spikyType;
+	
+	@JsonProperty
     private boolean hasFlowers;
     
 	
