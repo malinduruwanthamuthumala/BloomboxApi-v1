@@ -3,6 +3,7 @@ package com.plantit.bloombox.beans.plants;
 import java.util.Map;
 
 import com.plantit.bloombox.beans.plants.Cactus.CactusBuilder;
+import com.plantit.bloombox.enums.PlantTypes;
 
 import jakarta.persistence.Entity;
 
@@ -12,7 +13,9 @@ public class Fern extends Plant {
 	private boolean isIndigenous;
     private String habitat;
     private boolean hasSpores;
+   
     
+
 	
 	public boolean isIndigenous() {
 		return isIndigenous;
@@ -43,7 +46,12 @@ public class Fern extends Plant {
 		private Double price;		
 		private String images;
 		private Integer stockQuantity;
+		private PlantTypes type;
 		
+		public FernBuilder setType(PlantTypes type) {
+			this.type = type;
+			return this;
+		}
 	    
 		public FernBuilder setIndigenous(boolean isIndigenous) {
 			this.isIndigenous = isIndigenous;
@@ -95,6 +103,7 @@ public class Fern extends Plant {
 			fern.setPlantDescription(plantDescription);
 			fern.setStockQuantity(stockQuantity);
 			fern.setPrices(price);
+			fern.setType(type);
 			return fern;
 		}
 	    

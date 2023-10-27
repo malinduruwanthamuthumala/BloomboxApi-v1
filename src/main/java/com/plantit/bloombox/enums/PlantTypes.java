@@ -14,7 +14,7 @@ public enum PlantTypes {
 		this.displayName = name;
 	}
 	
-	public String getDisplayName() {
+	public String getValue() {
 		return displayName;
 	}
 

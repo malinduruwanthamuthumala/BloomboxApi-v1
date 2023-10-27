@@ -22,6 +22,7 @@ import com.plantit.bloombox.beans.plants.Flower;
 import com.plantit.bloombox.beans.plants.Plant;
 import com.plantit.bloombox.beans.plants.Tree;
 import com.plantit.bloombox.components.PlantsPersistanceManager;
+import com.plantit.bloombox.enums.PlantTypes;
 import com.plantit.bloombox.exceptions.PlantNotFoundException;
 import com.plantit.bloombox.factories.PlantCreationFactory;
 import com.plantit.bloombox.repository.PlantRepository;
@@ -60,7 +61,7 @@ public class PlantsControllerv2 {
 	@PostMapping("/v2/cactus")
 	public ResponseEntity<Cactus> CreateCactus(@Valid  @RequestBody Cactus plant ) {
 		Long id = null ;
-		Optional<Plant> p = factory.createPlant("Cactus", plant);
+		Optional<Plant> p = factory.createPlant(PlantTypes.CACTUS.getValue() , plant);
 		if(p.isPresent()) {
 			repository.save(p.get());
 			id = p.get().getId();
@@ -77,7 +78,7 @@ public class PlantsControllerv2 {
 	@PostMapping("/v2/fern")
 	public ResponseEntity<Fern> CreateFern(@Valid  @RequestBody Fern plant ) {
 		
-		Optional<Plant> p = factory.createPlant("Fern", plant);
+		Optional<Plant> p = factory.createPlant(PlantTypes.FERN.getValue(), plant);
 		if(p.isPresent()) {
 			repository.save(p.get());	
 		}					
@@ -93,7 +94,7 @@ public class PlantsControllerv2 {
 	@PostMapping("/v2/flower")
 	public ResponseEntity<Flower> CreateFlower(@Valid  @RequestBody Flower plant ) {
 		
-		Optional<Plant> p = factory.createPlant("Flower", plant);
+		Optional<Plant> p = factory.createPlant(PlantTypes.FLOWER.getValue(), plant);
 		if(p.isPresent()) {
 			repository.save(p.get());	
 		}					
@@ -109,7 +110,7 @@ public class PlantsControllerv2 {
 	@PostMapping("/v2/tree")
 	public ResponseEntity<Tree> CreateTree(@Valid  @RequestBody Tree plant ) {
 		
-		Optional<Plant> p = factory.createPlant("Tree", plant);
+		Optional<Plant> p = factory.createPlant(PlantTypes.TREE.getValue(), plant);
 		if(p.isPresent()) {
 			repository.save(p.get());	
 		}					

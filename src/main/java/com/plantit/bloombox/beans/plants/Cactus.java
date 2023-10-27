@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.plantit.bloombox.beans.plants.Plant.PlantBuilder;
+import com.plantit.bloombox.enums.PlantTypes;
 
 import jakarta.persistence.Entity;
 
@@ -51,9 +52,15 @@ public class Cactus extends Plant {
 		private Double price;		
 		private String images;
 		private Integer stockQuantity;
+		private PlantTypes type;
 	    
 	    
-	    public CactusBuilder setIsSpiky(boolean isSpiky) {
+		public CactusBuilder setType(PlantTypes type) {
+			this.type = type;
+			return this;
+		}
+
+		public CactusBuilder setIsSpiky(boolean isSpiky) {
 	    	this.isSpiky = isSpiky;
 	    	return this;
 	    }
@@ -103,7 +110,8 @@ public class Cactus extends Plant {
 	        cactus.setPlantName(plantName);
 	        cactus.setPrices(price);
 	        cactus.setStockQuantity(stockQuantity);
-	        cactus.setPlantDescription(plantDescription);;
+	        cactus.setPlantDescription(plantDescription);
+	        cactus.setType(type);
 	        return cactus;
 	    }
 		
