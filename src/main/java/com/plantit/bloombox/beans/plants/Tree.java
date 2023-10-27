@@ -3,6 +3,8 @@ package com.plantit.bloombox.beans.plants;
 import java.util.Map;
 
 import com.plantit.bloombox.beans.plants.Fern.FernBuilder;
+import com.plantit.bloombox.beans.plants.Flower.FlowerBuilder;
+import com.plantit.bloombox.enums.PlantTypes;
 
 import jakarta.persistence.Entity;
 
@@ -59,6 +61,13 @@ public class Tree extends Plant {
 			private Double price;		
 			private String images;
 			private Integer stockQuantity;
+			private PlantTypes type;
+		    
+		    
+			public TreeBuilder setType(PlantTypes type) {
+				this.type = type;
+				return this;
+			}
 			
 			
 			
@@ -116,6 +125,7 @@ public class Tree extends Plant {
 				tree.setPrices(price);
 				tree.setStockQuantity(stockQuantity);
 				tree.setImages(images);
+				tree.setType(type);
 				return tree;
 		}
 		    

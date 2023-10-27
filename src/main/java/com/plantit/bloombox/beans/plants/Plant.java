@@ -1,15 +1,23 @@
 package com.plantit.bloombox.beans.plants;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import com.plantit.bloombox.beans.subscription.Subscription;
+import com.plantit.bloombox.enums.PlantTypes;
+
 import jakarta.annotation.Generated;
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.ManyToMany;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -24,12 +32,21 @@ public abstract class Plant implements IdSupport{
 	
 	private String plantDescription;
 	
+	@Embedded
+	private sizeDetail sizes;
+	
 	@Size(min=2,message = "Name should have at least two charachters")
 	private String plantName;
 	
 	private Double price;
 	
 	private String images;
+	
+	@ManyToMany(mappedBy="plantList")
+	private List<Subscription> subList;
+	
+	@Enumerated(EnumType.STRING)
+	private PlantTypes type;
 	
 	@NotNull
 	private Integer stockQuantity;
@@ -106,6 +123,17 @@ public abstract class Plant implements IdSupport{
 					//no-op
 	}
 	
-
+	public Double getPrice() {
+		return price;
+	}
+	public PlantTypes getType() {
+		return type;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	public void setType(PlantTypes type) {
+		this.type = type;
+	}
 
 }

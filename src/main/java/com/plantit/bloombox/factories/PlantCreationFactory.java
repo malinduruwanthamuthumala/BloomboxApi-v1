@@ -19,7 +19,7 @@ public class PlantCreationFactory {
 	
 	
 	public Optional<Plant> createPlant (String type,Plant plant) {
-		if (PlantTypes.CACTUS.getDisplayName().equals(type)) {
+		if (PlantTypes.CACTUS.getValue().equals(type)) {
 			Cactus c = (Cactus)plant;
 			Cactus cactus = new Cactus.CactusBuilder()
 					.setHasFlowers(c.isHasFlowers())
@@ -30,10 +30,11 @@ public class PlantCreationFactory {
 					.setPrice(c.getPrices())		
 					.setPlantName(c.getPlantName())
 					.setStock(c.getStockQuantity())
+					.setType(PlantTypes.CACTUS)
 					.build();
 			return Optional.of(cactus);
 		}		
-		if (PlantTypes.FERN.getDisplayName().equalsIgnoreCase(type)) {
+		if (PlantTypes.FERN.getValue().equalsIgnoreCase(type)) {
 			Fern f = (Fern)plant;
 			Fern fern = new Fern.FernBuilder()
 					.setHabitat(f.getHabitat())
@@ -43,11 +44,12 @@ public class PlantCreationFactory {
 					.setPlantName(f.getPlantName())
 					.setStock(f.getStockQuantity())
 					.setImages(f.getImages())
+					.setType(PlantTypes.FERN)
 					.build();
 			return Optional.of(fern);
 			
 		}
-		if (PlantTypes.FLOWER.getDisplayName().equalsIgnoreCase(type)) {
+		if (PlantTypes.FLOWER.getValue().equalsIgnoreCase(type)) {
 			Flower fl = (Flower)plant;
 			Flower flower = new Flower.FlowerBuilder()
 					.setColor(fl.getColor())
@@ -60,10 +62,11 @@ public class PlantCreationFactory {
 					.setImages(fl.getImages())
 					.setPrice(fl.getPrices())
 					.setStock(fl.getStockQuantity())
+					.setType(PlantTypes.FLOWER)
 					.build();
 			return Optional.of(flower);
 		}
-		if(PlantTypes.TREE.getDisplayName().equalsIgnoreCase(type)) {
+		if(PlantTypes.TREE.getValue().equalsIgnoreCase(type)) {
 			Tree t = (Tree)plant;
 			Tree tree = new Tree.TreeBuilder()
 					.setAge(t.getAge())
@@ -75,6 +78,7 @@ public class PlantCreationFactory {
 					.setPlantName(t.getPlantName())
 					.setPrice(t.getPrices())
 					.setStock(t.getStockQuantity())
+					.setType(PlantTypes.TREE)
 					.build();
 			return Optional.of(tree);
 	

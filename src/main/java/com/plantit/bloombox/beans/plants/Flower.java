@@ -2,7 +2,9 @@ package com.plantit.bloombox.beans.plants;
 
 import java.util.Map;
 
+import com.plantit.bloombox.beans.plants.Cactus.CactusBuilder;
 import com.plantit.bloombox.beans.plants.Fern.FernBuilder;
+import com.plantit.bloombox.enums.PlantTypes;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Inheritance;
@@ -55,6 +57,13 @@ public class Flower extends Plant {
 		private Double price;		
 		private String images;
 		private Integer stockQuantity;
+		private PlantTypes type;
+	    
+	    
+		public FlowerBuilder setType(PlantTypes type) {
+			this.type = type;
+			return this;
+		}
 		
 		public FlowerBuilder setPetalCount(int petalCount) {
 			this.petalCount = petalCount;
@@ -113,6 +122,7 @@ public class Flower extends Plant {
 			flower.setPlantDescription(plantDescription);
 			flower.setPrices(price);
 			flower.setStockQuantity(stockQuantity);
+			flower.setType(type);
 			return flower;
 			
 		}
