@@ -1,11 +1,11 @@
-package com.plantit.bloombox.enums;
-
-public enum SubscriptionType {
+	package com.plantit.bloombox.enums;
 	
-	ANNUAL,
-	ONETIME,
-	MONTHLY,
-	ONCETHREEMONTHS,
-	WEEKLY,
-
-}
+	public enum SubscriptionType {
+		
+		ANNUAL,
+		ONETIME,
+		MONTHLY,
+		ONCETHREEMONTHS,
+		WEEKLY,
+	
+	}

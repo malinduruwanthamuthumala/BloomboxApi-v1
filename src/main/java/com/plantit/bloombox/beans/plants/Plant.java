@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import com.plantit.bloombox.beans.subscription.Subscription;
 import com.plantit.bloombox.enums.PlantTypes;
 
@@ -43,6 +46,7 @@ public abstract class Plant implements IdSupport{
 	private String images;
 	
 	@ManyToMany(mappedBy="plantList")
+	@Fetch(FetchMode.JOIN)
 	private List<Subscription> subList;
 	
 	@Enumerated(EnumType.STRING)
